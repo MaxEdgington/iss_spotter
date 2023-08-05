@@ -18,7 +18,13 @@ const fetchCallback = (error, passTimes) => {
     console.error(error);
   } else if (passTimes) {
     for (const passTime of passTimes) {
-      console.log(passTime);
+      // convert the seconds from the API into miliseconds for the JS date
+      const date = new Date(passTime.risetime * 1000);
+      console.log(
+        `ISS Spotter passes over your location at ${date.toString()} for ${
+          passTime.duration
+        } seconds.`
+      );
     }
   }
 };
